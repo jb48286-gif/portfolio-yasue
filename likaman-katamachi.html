@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ja" data-phase="night" data-motion="on" data-size="m">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>リカーマウンテン 金沢片町1丁目店｜片町の夜に、上質な一本を。</title>
+<meta name="description" content="金沢・片町の酒屋、リカーマウンテン 金沢片町1丁目店。営業時間・アクセス・お支払い方法をひと目で確認できます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  color-scheme: light dark;
+  --bg:#EEF1F5; --surface:#FFFFFF; --surface-2:#E3E8F0;
+  --ink:#152038; --ink-2:#48536B; --line:rgba(21,32,56,.18);
+  --gold:#B58A24; --gold-ink:#7A5808; --btn-bg:#152038; --btn-ink:#F4F6FA;
+  --enji:#9B2C3A;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1324; --surface:#151D35; --surface-2:#1E2846;
+    --ink:#ECEFF6; --ink-2:#A9B3CA; --line:rgba(236,239,246,.18);
+    --gold:#D9B45F; --gold-ink:#E4C47E; --btn-bg:#D9B45F; --btn-ink:#191305;
+    --enji:#E27C88;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1324; --surface:#151D35; --surface-2:#1E2846;
+  --ink:#ECEFF6; --ink-2:#A9B3CA; --line:rgba(236,239,246,.18);
+  --gold:#D9B45F; --gold-ink:#E4C47E; --btn-bg:#D9B45F; --btn-ink:#191305;
+  --enji:#E27C88; color-scheme:dark;
+}
+:root[data-theme="light"]{ color-scheme:light; }
+
+/* sky phases (text colors + CSS fallback behind the 3D canvas) */
+html[data-phase="day"]{ --hero-ink:#0D2035; --chip-bg:rgba(255,255,255,.62); --sky-a:#6FA5CF; --sky-b:#C6DDEA; }
+html[data-phase="dusk"]{ --hero-ink:#F6F3EE; --chip-bg:rgba(20,14,38,.42); --sky-a:#26264F; --sky-b:#F0A56A; }
+html[data-phase="night"]{ --hero-ink:#F1F4FA; --chip-bg:rgba(6,10,24,.5); --sky-a:#060A18; --sky-b:#24305A; }
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:inherit}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4.5rem);
+  -webkit-text-size-adjust:100%;
+}
+html[data-size="s"]{font-size:90%}
+html[data-size="m"]{font-size:100%}
+html[data-size="l"]{font-size:115%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:1rem; line-height:1.9;
+  font-feature-settings:"palt"; overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--serif); margin:0; line-height:1.4}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:4px}
+.wrap{width:min(1100px,100% - 2.5rem); margin-inline:auto}
+section.block{padding-block:clamp(4rem,9vw,7rem)}
+h2.title{font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:800; letter-spacing:.04em}
+.lead-sm{color:var(--ink-2); max-width:34em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Header ---------- */
+.bar{
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  padding:calc(env(safe-area-inset-top,0px) + .6rem) clamp(1rem,4vw,2.5rem) .6rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  color:var(--hero-ink); transition:background .35s, color .35s, border-color .35s;
+  border-bottom:1px solid transparent;
+}
+.bar.scrolled{
+  color:var(--ink); border-bottom-color:var(--line);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.brand{display:flex; align-items:center; gap:.65rem; text-decoration:none; font-family:var(--serif); font-weight:700; letter-spacing:.05em; font-size:1rem; line-height:1.3}
+.brand svg{width:34px; height:34px; flex:none}
+.brand small{display:block; font-family:var(--sans); font-weight:500; font-size:.72rem; letter-spacing:.06em; opacity:.85}
+.burger{
+  width:48px; height:48px; border:1px solid currentColor; border-radius:50%;
+  background:transparent; color:inherit; cursor:pointer; display:grid; place-items:center; padding:0;
+}
+.burger .lines{position:relative; width:20px; height:14px; display:block}
+.burger .lines i{position:absolute; left:0; right:0; height:2px; background:currentColor; border-radius:2px; transition:transform .35s cubic-bezier(.6,0,.2,1), opacity .2s, top .35s}
+.burger .lines i:nth-child(1){top:0}
+.burger .lines i:nth-child(2){top:6px}
+.burger .lines i:nth-child(3){top:12px}
+.burger[aria-expanded="true"] .lines i:nth-child(1){top:6px; transform:rotate(45deg)}
+.burger[aria-expanded="true"] .lines i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] .lines i:nth-child(3){top:6px; transform:rotate(-45deg)}
+
+/* ---------- Hero (3D scene) ---------- */
+.hero{position:relative; min-height:100svh; overflow:hidden; color:var(--hero-ink); isolation:isolate; background:linear-gradient(180deg,var(--sky-a),var(--sky-b)); transition:color .6s}
+#gl{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:-1; opacity:0; transition:opacity 1.4s ease}
+#gl.ready{opacity:1}
+.hero::after{content:""; position:absolute; left:0; right:0; bottom:0; height:12%; background:linear-gradient(transparent, var(--bg)); pointer-events:none}
+.hero-copy{text-shadow:0 0 22px color-mix(in srgb, var(--sky-a) 75%, transparent)}
+
+.hero-grid{
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1.5rem; align-items:start;
+  padding:calc(env(safe-area-inset-top,0px) + 6.2rem) clamp(1.25rem,6vw,5rem) 0;
+  max-width:1280px; margin-inline:auto;
+}
+.hero-copy{padding-top:.5rem; max-width:30rem}
+.hero-name{font-family:var(--serif); font-weight:700; font-size:clamp(1.15rem,2.2vw,1.45rem); letter-spacing:.06em; margin-bottom:1rem; line-height:1.5}
+.hero-lead{font-size:1rem; opacity:.95; margin-bottom:1.5rem}
+.chip{
+  display:inline-flex; align-items:center; gap:.85rem; padding:.7rem 1.1rem .7rem .9rem;
+  background:var(--chip-bg); border:1px solid color-mix(in srgb, var(--hero-ink) 28%, transparent);
+  border-radius:999px; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); margin-bottom:1.4rem; max-width:100%;
+}
+.dot{width:14px; height:14px; border-radius:50%; background:#8A93A8; flex:none; position:relative}
+.chip.open .dot{background:#FFC857; box-shadow:0 0 14px 4px rgba(255,200,87,.7); animation:glow 2.6s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 10px 2px rgba(255,200,87,.55)}50%{box-shadow:0 0 22px 8px rgba(255,200,87,.85)}}
+.chip b{font-family:var(--serif); font-size:1.15rem; letter-spacing:.06em; display:block; line-height:1.3}
+.chip span{font-size:.85rem; display:block; line-height:1.5}
+.cta{display:flex; flex-wrap:wrap; gap:.75rem}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:48px; padding:.6rem 1.4rem;
+  border-radius:999px; font-weight:700; text-decoration:none; border:1.5px solid currentColor; cursor:pointer;
+  font:inherit; font-weight:700; background:transparent; color:inherit; transition:transform .2s, background .2s;
+}
+.btn:active{transform:scale(.97)}
+.btn.gold{background:#E4BC62; border-color:#E4BC62; color:#1B1405}
+.btn.gold:hover{background:#F0CB7C}
+.btn.line:hover{background:color-mix(in srgb, currentColor 12%, transparent)}
+.tagline{
+  writing-mode:vertical-rl; font-family:var(--serif); font-weight:800;
+  font-size:clamp(2.1rem,6.4vw,4.6rem); letter-spacing:.14em; line-height:1.25; margin:0;
+  text-shadow:0 2px 24px rgba(0,0,0,.18);
+}
+.tagline span{display:block; animation:reveal 1.3s cubic-bezier(.6,0,.2,1) both}
+.tagline span:nth-child(1){animation-delay:.5s}
+.tagline span:nth-child(2){animation-delay:1.1s}
+@keyframes reveal{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.hero-copy > *{animation:fadein 1s ease both}
+.hero-copy > *:nth-child(1){animation-delay:.2s}
+.hero-copy > *:nth-child(2){animation-delay:.5s}
+.hero-copy > *:nth-child(3){animation-delay:.9s}
+.hero-copy > *:nth-child(4){animation-delay:1.1s}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* ---------- Hours ---------- */
+.hours-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(2rem,6vw,5rem); align-items:start}
+.live-big{font-family:var(--serif); font-weight:800; font-size:clamp(2.2rem,5vw,3.4rem); letter-spacing:.06em; margin-top:1.5rem; line-height:1.2}
+.live-big.on{color:var(--gold-ink)}
+.live-sub{color:var(--ink-2); margin-top:.4rem}
+.hol-note{margin-top:1rem; padding:.8rem 1rem; border-left:3px solid var(--enji); background:var(--surface); font-size:.95rem}
+table.hours{width:100%; border-collapse:collapse}
+table.hours th,table.hours td{text-align:left; padding:1rem .5rem 1rem 1rem; border-bottom:1px solid var(--line); font-weight:500}
+table.hours th{font-family:var(--serif); font-weight:700; width:8em; white-space:nowrap}
+table.hours tr{position:relative}
+table.hours tr.today{background:var(--surface); box-shadow:inset 3px 0 0 var(--gold)}
+table.hours tr.today th::after{content:"本日"; margin-left:.6rem; font-family:var(--sans); font-size:.72rem; font-weight:700; padding:.05rem .5rem; border-radius:99px; background:var(--gold); color:#1B1405}
+.tl{margin-top:2.2rem}
+.tl-track{position:relative; height:16px; border-radius:99px; background:var(--surface-2)}
+.tl-open{position:absolute; top:0; bottom:0; border-radius:99px; background:linear-gradient(90deg,var(--gold),color-mix(in srgb,var(--gold) 70%, var(--enji))); transition:left .6s, width .6s}
+.tl-now{position:absolute; top:-7px; width:2px; height:30px; background:var(--ink); transform:translateX(-1px); transition:left .6s}
+.tl-now::after{content:"現在"; position:absolute; top:-1.4rem; left:50%; transform:translateX(-50%); font-size:.72rem; font-weight:700; white-space:nowrap}
+.tl-ticks{position:relative; height:1.6rem; margin-top:.6rem; font-size:.78rem; color:var(--ink-2)}
+.tl-ticks span{position:absolute; transform:translateX(-50%); white-space:nowrap}
+.tl-cap{margin-top:.3rem; font-size:.88rem; color:var(--ink-2)}
+
+/* ---------- About ---------- */
+.about{background:var(--surface)}
+.about-grid{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,6vw,5rem); margin-top:2.5rem; align-items:start}
+.score{font-family:var(--serif); font-weight:800; font-size:clamp(4.5rem,11vw,7.5rem); line-height:1; color:var(--gold-ink)}
+.stars-row{position:relative; display:inline-block; font-size:1.6rem; letter-spacing:.12em; line-height:1; margin-top:.6rem; color:var(--surface-2)}
+.stars-row i{position:absolute; left:0; top:0; width:82%; overflow:hidden; color:var(--gold); font-style:normal; white-space:nowrap}
+.score-cap{color:var(--ink-2); font-size:.92rem; margin-top:.6rem}
+.quotes{display:grid; gap:1.6rem}
+.quote{margin:0; font-family:var(--serif); font-size:clamp(1.15rem,2.2vw,1.5rem); font-weight:500; line-height:1.8; padding-left:1.2rem; border-left:3px solid var(--gold)}
+.quote cite{display:block; margin-top:.3rem; font-family:var(--sans); font-style:normal; font-size:.82rem; color:var(--ink-2)}
+dl.facts{margin:3rem 0 0; border-top:1px solid var(--line)}
+dl.facts div{display:grid; grid-template-columns:9em 1fr; gap:1rem; padding:1.1rem 0; border-bottom:1px solid var(--line)}
+dl.facts dt{font-family:var(--serif); font-weight:700; font-size:1.1rem}
+dl.facts dd{margin:0; color:var(--ink-2)}
+.note{font-size:.85rem; color:var(--ink-2); margin-top:1rem}
+
+/* ---------- Payment ---------- */
+.pay-groups{display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.5rem,5vw,4rem); margin-top:2rem}
+.pay-groups h3{font-size:1.05rem; font-weight:700; margin-bottom:.9rem}
+.tags{display:flex; flex-wrap:wrap; gap:.6rem; list-style:none; margin:0; padding:0}
+.tags li{padding:.45rem 1rem; border:1.5px solid var(--ink); border-radius:999px; font-weight:700; font-size:.95rem; line-height:1.5}
+
+/* ---------- Access ---------- */
+.access{background:#101A33; color:#EEF1F8; position:relative; overflow:hidden}
+.access .title{color:#fff}
+.access-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(2rem,6vw,5rem); margin-top:2.5rem; align-items:end; position:relative}
+.addr{font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.8rem); font-weight:700; line-height:1.7; font-style:normal}
+.addr small{display:block; font-family:var(--sans); font-weight:500; font-size:.95rem; color:#B7C0D6; margin-bottom:.3rem}
+.access p.meta{margin-top:1rem; color:#C4CCE0}
+.access .cta{margin-top:1.8rem}
+.access .btn.line{color:#EEF1F8}
+.access .btn.gold{color:#1B1405}
+.ridge{position:absolute; right:-40px; bottom:-2px; width:min(620px,90%); height:auto; opacity:.5; pointer-events:none}
+.tel{font-family:var(--serif); font-weight:800; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:.06em; text-decoration:none; color:#F0CB7C; display:inline-block}
+
+/* ---------- News ---------- */
+.news-list{list-style:none; margin:2rem 0 0; padding:0; border-top:1px solid var(--line)}
+.news-list li{display:grid; grid-template-columns:11em 1fr; gap:1.5rem; padding:1.5rem 0; border-bottom:1px solid var(--line)}
+.news-date{font-weight:700; color:var(--gold-ink); line-height:1.6}
+.news-list h3{font-size:1.2rem; font-weight:700; margin-bottom:.3rem}
+.news-list p{color:var(--ink-2); max-width:38em}
+.live-tag{display:inline-block; margin-left:.6rem; padding:.05rem .6rem; border-radius:99px; background:var(--enji); color:#fff; font-family:var(--sans); font-size:.72rem; font-weight:700; vertical-align:middle}
+html[data-theme="dark"] .live-tag{color:#1B0A0D}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .live-tag{color:#1B0A0D} }
+
+/* ---------- Footer ---------- */
+footer{padding:3rem 0 4rem; border-top:1px solid var(--line); font-size:.9rem; color:var(--ink-2)}
+footer .wrap{display:grid; gap:.8rem}
+footer strong{font-family:var(--serif); font-size:1.1rem; color:var(--ink)}
+.age{color:var(--ink); font-weight:700}
+
+/* ---------- Control panel drawer ---------- */
+.veil{position:fixed; inset:0; background:rgba(4,8,20,.55); opacity:0; visibility:hidden; transition:opacity .35s, visibility .35s; z-index:50}
+.veil.show{opacity:1; visibility:visible}
+.panel{
+  position:fixed; top:0; right:0; bottom:0; width:min(400px,92vw); z-index:60;
+  background:var(--bg); color:var(--ink); border-left:1px solid var(--line);
+  transform:translateX(102%); visibility:hidden; transition:transform .45s cubic-bezier(.6,0,.2,1), visibility .45s;
+  overflow-y:auto; overscroll-behavior:contain;
+  padding:calc(env(safe-area-inset-top,0px) + 1rem) 1.4rem calc(env(safe-area-inset-bottom,0px) + 2rem);
+  box-shadow:-20px 0 60px rgba(0,0,0,.25);
+}
+.panel.open{transform:none; visibility:visible}
+.panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem}
+.panel-head h2{font-size:1.2rem}
+.x{width:48px; height:48px; border-radius:50%; border:1px solid var(--line); background:transparent; color:inherit; cursor:pointer; display:grid; place-items:center; padding:0}
+.x svg{width:18px; height:18px}
+.panel nav ul{list-style:none; margin:0 0 1.6rem; padding:0; border-top:1px solid var(--line)}
+.panel nav a{display:flex; justify-content:space-between; align-items:center; padding:.9rem .2rem; min-height:48px; text-decoration:none; border-bottom:1px solid var(--line); font-family:var(--serif); font-weight:700; font-size:1.1rem}
+.panel nav a:hover{color:var(--gold-ink)}
+.panel nav a span{font-family:var(--sans); font-size:.78rem; font-weight:500; color:var(--ink-2)}
+.panel h3{font-size:.95rem; font-weight:700; margin:1.6rem 0 .7rem; font-family:var(--sans); color:var(--ink-2)}
+.quick{display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem}
+.quick a,.quick button{
+  display:grid; place-items:center; gap:.2rem; padding:.7rem .3rem; min-height:64px; text-align:center; text-decoration:none;
+  border:1px solid var(--line); border-radius:14px; background:var(--surface); color:var(--ink); font:inherit; font-size:.82rem; font-weight:700; cursor:pointer; line-height:1.3;
+}
+.quick svg{width:20px; height:20px}
+fieldset.set{border:0; margin:0 0 1.1rem; padding:0; min-width:0}
+fieldset.set legend{padding:0; margin-bottom:.45rem; font-weight:700; font-size:.92rem}
+.seg{display:flex; gap:.25rem; padding:.25rem; background:var(--surface-2); border-radius:14px}
+.seg label{flex:1; position:relative; min-width:0}
+.seg input{position:absolute; inset:0; width:100%; height:100%; opacity:0; margin:0; cursor:pointer}
+.seg span{display:grid; place-items:center; min-height:44px; padding:.2rem .3rem; border-radius:11px; font-size:.88rem; text-align:center; line-height:1.3; transition:background .2s, color .2s}
+.seg input:checked + span{background:var(--ink); color:var(--bg); font-weight:700}
+.seg input:focus-visible + span{outline:3px solid var(--gold); outline-offset:2px}
+.reset{margin-top:.6rem; width:100%; min-height:48px; border:1px dashed var(--line); background:transparent; color:var(--ink-2); border-radius:14px; cursor:pointer; font:inherit}
+.hint{font-size:.8rem; color:var(--ink-2); line-height:1.6; margin-top:.4rem}
+.toast{
+  position:fixed; left:50%; bottom:calc(env(safe-area-inset-bottom,0px) + 1.5rem); transform:translate(-50%,20px); opacity:0; z-index:80;
+  background:var(--ink); color:var(--bg); padding:.7rem 1.2rem; border-radius:999px; font-weight:700; font-size:.9rem; transition:opacity .3s, transform .3s; pointer-events:none
+}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+
+/* ---------- Motion off ---------- */
+html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after{animation:none!important; transition:none!important}
+html[data-motion="off"]{scroll-behavior:auto}
+
+/* ---------- Responsive ---------- */
+@media (max-width:820px){
+  .hours-grid,.about-grid,.access-grid,.pay-groups{grid-template-columns:1fr}
+  .news-list li{grid-template-columns:1fr; gap:.4rem}
+  dl.facts div{grid-template-columns:1fr; gap:.2rem}
+  .hero-grid{gap:.75rem}
+  .brand small{display:none}
+}
+@media (max-width:420px){
+  .hero-lead{font-size:.95rem}
+  .btn{padding:.6rem 1.1rem}
+}
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top" aria-label="ページ先頭へ">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 29 L15 15 L20 22 L26 11 L35 29 Z" fill="currentColor"/><circle cx="29" cy="10" r="2.2" fill="currentColor"/></svg>
+    <span>リカーマウンテン<small>金沢片町1丁目店</small></span>
+  </a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="panel" aria-label="メニューと表示設定を開く">
+    <span class="lines" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+</header>
+
+<main>
+<!-- ========== HERO ========== -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="hero-name">リカーマウンテン<br>金沢片町1丁目店</p>
+      <p class="hero-lead">片町の一角にある、品揃え豊富な酒屋。夕方5時から深夜2時まで営業しています。</p>
+      <div class="chip" id="chip" role="status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <div><b id="chipMain">確認中</b><span id="chipSub">営業状況を確認しています</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn gold" href="tel:0762105355">電話する</a>
+        <a class="btn line" href="#access">アクセスを見る</a>
+      </div>
+    </div>
+    <h1 class="tagline" id="h1"><span>片町の夜に、</span><span>上質な一本を。</span></h1>
+  </div>
+</section>
+
+<!-- ========== HOURS ========== -->
+<section class="block" id="hours" aria-labelledby="hoursH">
+  <div class="wrap hours-grid">
+    <div>
+      <h2 class="title" id="hoursH">営業時間</h2>
+      <p class="lead-sm" style="margin-top:.8rem">夕方から深夜まで。仕事帰りや二軒目の前にも立ち寄れます。</p>
+      <div class="live-big" id="liveBig">確認中</div>
+      <p class="live-sub" id="liveSub"></p>
+      <p class="hol-note" id="holNote" hidden></p>
+    </div>
+    <div>
+      <table class="hours">
+        <caption class="sr">曜日別の営業時間</caption>
+        <tbody>
+          <tr data-kind="week"><th scope="row">月〜土曜</th><td>17:00 – 翌2:00</td></tr>
+          <tr data-kind="holiday"><th scope="row">祝日</th><td>17:00 – 24:00</td></tr>
+          <tr data-kind="sun"><th scope="row">日曜</th><td>定休日</td></tr>
+        </tbody>
+      </table>
+      <div class="tl" aria-hidden="true">
+        <div class="tl-track"><div class="tl-open" id="tlOpen"></div><div class="tl-now" id="tlNow"></div></div>
+        <div class="tl-ticks"><span style="left:16.67%">17時</span><span style="left:41.67%">20時</span><span style="left:66.67%">23時</span><span style="left:91.67%">翌2時</span></div>
+        <p class="tl-cap" id="tlCap"></p>
+      </div>
+      <p class="note">祝日は24:00閉店です。年末年始など、営業日・営業時間が変わる場合があります。お出かけ前にお電話でご確認ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="block about" id="about" aria-labelledby="aboutH">
+  <div class="wrap">
+    <h2 class="title" id="aboutH">洋酒から、流行りの一本まで。</h2>
+    <div class="about-grid">
+      <div>
+        <div class="score">4.1</div>
+        <div class="stars-row" role="img" aria-label="5点満点中4.1点">★★★★★<i>★★★★★</i></div>
+        <p class="score-cap">Google クチコミ 11件の平均評価</p>
+      </div>
+      <div class="quotes">
+        <blockquote class="quote">洋酒の種類が豊富ですね。<cite>Google クチコミより</cite></blockquote>
+        <blockquote class="quote">割と流行りくらいの物も売ってて 見てても楽しい。<cite>Google クチコミより</cite></blockquote>
+      </div>
+    </div>
+    <dl class="facts">
+      <div><dt>洋酒</dt><dd>種類の多さを挙げるクチコミが寄せられています。</dd></div>
+      <div><dt>ワイン</dt><dd>公式サイトでは、ワインなど豊富な品揃えの酒屋として紹介されています。</dd></div>
+      <div><dt>いま人気の商品</dt><dd>流行りの商品も並び、棚を眺めるだけでも楽しいという声があります。</dd></div>
+    </dl>
+    <p class="note">在庫は日々変わります。お探しの銘柄は、お電話でお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- ========== PAYMENT ========== -->
+<section class="block" id="pay" aria-labelledby="payH">
+  <div class="wrap">
+    <h2 class="title" id="payH">お支払い方法</h2>
+    <div class="pay-groups">
+      <div>
+        <h3>スマホ決済</h3>
+        <ul class="tags"><li>au PAY</li><li>PayPay</li><li>d払い</li><li>楽天ペイ</li></ul>
+      </div>
+      <div>
+        <h3>クレジットカード</h3>
+        <ul class="tags"><li>JCB</li><li>American Express</li></ul>
+      </div>
+    </div>
+    <p class="note">上記のほかにも対応している決済方法があります。詳しくはレジでご確認ください。</p>
+  </div>
+</section>
+
+<!-- ========== ACCESS ========== -->
+<section class="block access" id="access" aria-labelledby="accH">
+  <svg class="ridge" viewBox="0 0 620 220" aria-hidden="true"><path d="M0 220 L70 140 L120 180 L210 60 L280 150 L340 100 L430 190 L500 120 L620 210 V220Z" fill="#1E2C52"/><path d="M0 220 L90 170 L170 205 L260 150 L360 210 L450 165 L620 220Z" fill="#16213F"/></svg>
+  <div class="wrap">
+    <h2 class="title" id="accH">アクセス</h2>
+    <div class="access-grid">
+      <div>
+        <address class="addr"><small>〒920-0981</small>石川県金沢市片町1丁目7-18<br>島田ビル 1F</address>
+        <p class="meta">野町駅から徒歩約11分（Yahoo!マップ調べ）</p>
+        <div class="cta">
+          <a class="btn gold" id="mapLink" href="#" target="_blank" rel="noopener">地図でルートを見る</a>
+          <button class="btn line" type="button" id="copyAddr">住所をコピー</button>
+        </div>
+      </div>
+      <div>
+        <p style="color:#B7C0D6; margin-bottom:.2rem">お問い合わせ・在庫確認</p>
+        <a class="tel" href="tel:0762105355">076-210-5355</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEWS ========== -->
+<section class="block" id="news" aria-labelledby="newsH">
+  <div class="wrap">
+    <h2 class="title" id="newsH">リカーマウンテンからのお知らせ</h2>
+    <p class="lead-sm" style="margin-top:.8rem">公式Xの最近の投稿から、全店共通の話題をご紹介します。実施店舗や条件は、各投稿でご確認ください。</p>
+    <ul class="news-list">
+      <li>
+        <div class="news-date">2026年9月19日(土)<br>〜27日(日)</div>
+        <div>
+          <h3>ブルックラディ スペシャルウィーク 2026<span class="live-tag" id="liveTag" hidden>開催中</span></h3>
+          <p>ブルックラディ蒸留所の復興25周年を記念した9日間の企画です。あわせて、フォロー＆リポストで参加できるプレゼントキャンペーンも案内されています。</p>
+        </div>
+      </li>
+      <li>
+        <div class="news-date">10月開催予定<br>（京都）</div>
+        <div>
+          <h3>酒宴 LIQUOR FESTIVAL 2026</h3>
+          <p>今年から一般公開となった、全国の銘酒が京都に集まるイベントです。前売券が販売中で、来場者全員が参加できる抽選くじも予定されています。</p>
+        </div>
+      </li>
+      <li>
+        <div class="news-date">2026-27シーズン</div>
+        <div>
+          <h3>プロバスケットボール 冠試合の観戦ペアチケット</h3>
+          <p>秋田ノーザンハピネッツ戦や、京都ハンナリーズの開幕戦などで、SNSプレゼント企画が案内されています。</p>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:1.6rem"><a class="btn" href="https://www.likaman.co.jp/" target="_blank" rel="noopener" style="color:var(--ink)">公式サイトを見る</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>リカーマウンテン 金沢片町1丁目店</strong>
+    <p>〒920-0981 石川県金沢市片町1丁目7-18 島田ビル 1F ／ 076-210-5355</p>
+    <p class="age">お酒は20歳になってから。飲酒運転は法律で禁止されています。</p>
+    <p>このページは公開されている情報をもとにした紹介ページです。最新の営業情報は店舗または公式サイトでご確認ください。</p>
+  </div>
+</footer>
+
+<!-- ========== CONTROL PANEL ========== -->
+<div class="veil" id="veil"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelH" inert>
+  <div class="panel-head">
+    <h2 id="panelH">メニュー</h2>
+    <button class="x" id="closePanel" aria-label="メニューを閉じる"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3 L17 17 M17 3 L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <nav aria-label="ページ内メニュー">
+    <ul>
+      <li><a href="#hours">営業時間<span id="navLive"></span></a></li>
+      <li><a href="#about">お店の特徴<span>4.1</span></a></li>
+      <li><a href="#pay">お支払い方法<span></span></a></li>
+      <li><a href="#access">アクセス<span>片町1丁目</span></a></li>
+      <li><a href="#news">お知らせ<span></span></a></li>
+    </ul>
+  </nav>
+
+  <h3>すぐに使う</h3>
+  <div class="quick">
+    <a href="tel:0762105355"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>電話する</a>
+    <a href="#" id="mapLink2" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>地図を開く</a>
+    <button type="button" id="copyAddr2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>住所コピー</button>
+  </div>
+
+  <h3>表示設定</h3>
+  <fieldset class="set"><legend>テーマ</legend>
+    <div class="seg">
+      <label><input type="radio" name="theme" value="auto"><span>自動</span></label>
+      <label><input type="radio" name="theme" value="light"><span>ライト</span></label>
+      <label><input type="radio" name="theme" value="dark"><span>ダーク</span></label>
+    </div>
+  </fieldset>
+  <fieldset class="set"><legend>トップの空</legend>
+    <div class="seg">
+      <label><input type="radio" name="phase" value="auto"><span>今の時刻</span></label>
+      <label><input type="radio" name="phase" value="day"><span>昼</span></label>
+      <label><input type="radio" name="phase" value="dusk"><span>夕</span></label>
+      <label><input type="radio" name="phase" value="night"><span>夜</span></label>
+    </div>
+    <p class="hint">「今の時刻」は日本時間に合わせて空が変わります。</p>
+  </fieldset>
+  <fieldset class="set"><legend>アニメーション</legend>
+    <div class="seg">
+      <label><input type="radio" name="motion" value="on"><span>オン</span></label>
+      <label><input type="radio" name="motion" value="off"><span>オフ</span></label>
+    </div>
+  </fieldset>
+  <fieldset class="set"><legend>文字サイズ</legend>
+    <div class="seg">
+      <label><input type="radio" name="size" value="s"><span>小</span></label>
+      <label><input type="radio" name="size" value="m"><span>標準</span></label>
+      <label><input type="radio" name="size" value="l"><span>大</span></label>
+    </div>
+  </fieldset>
+  <button class="reset" type="button" id="reset">設定をもとに戻す</button>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var api = { setPhase:function(){}, setMotion:function(){} };
+  window.Hero3D = api;
+  var canvas = document.getElementById("gl");
+  if(!canvas || typeof THREE === "undefined") return;   // CSS gradient fallback stays visible
+  var renderer;
+  try{ renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true}); }catch(err){ return; }
+  var hero = canvas.parentElement;
+  var DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+  renderer.setPixelRatio(DPR);
+
+  /* ---------- helpers ---------- */
+  function clamp01(t){ return Math.max(0, Math.min(1, t)); }
+  function smooth(e0, e1, x){ var t = clamp01((x - e0) / (e1 - e0)); return t*t*(3 - 2*t); }
+  function mulberry(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function hash(x, y){ var n = Math.sin(x*127.1 + y*311.7) * 43758.5453; return n - Math.floor(n); }
+  function vn(x, y){
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var a = hash(xi,yi), b = hash(xi+1,yi), c = hash(xi,yi+1), d = hash(xi+1,yi+1);
+    var u = xf*xf*(3-2*xf), v = yf*yf*(3-2*yf);
+    return a + (b-a)*u + (c-a)*v + (a-b-c+d)*u*v;
+  }
+  function fbm(x, y){ var s = 0, a = .5, f = 1; for(var i=0;i<5;i++){ s += a*vn(x*f, y*f); f *= 2; a *= .5; } return s; }
+
+  /* ---------- terrain height: flat town valley, mountains to the sides and back ---------- */
+  function heightAt(x, z){
+    var side = smooth(34, 140, Math.abs(x));
+    var back = smooth(-30, -280, z) * .55;
+    var a = Math.min(1, side + back);
+    var r = 1 - Math.abs(2*fbm(x*.011 + 3.1, z*.011 - 1.7) - 1);
+    var h = a * (Math.pow(r, 1.8) * 105 + fbm(x*.03, z*.03) * 22);
+    h += (1 - a) * fbm(x*.05 + 9, z*.05) * 2.2;
+    return h;
+  }
+
+  /* ---------- phases ---------- */
+  var PH = {
+    day:  { top:0x6FA5CF, bottom:0xC6DDEA, hemiSky:0xCFE6FF, hemiGround:0x6E7F6C, hemiI:.95, dir:0xFFF1D0, dirI:1.15, dirPos:[70,120,50],
+            orb:0xFFF0B8, orbPos:[60,150,-380], orbR:16, glow:.55, win:0x8B7C58, winO:.25, stars:0, lantern:.5 },
+    dusk: { top:0x26264F, bottom:0xF0A56A, hemiSky:0x9A78B0, hemiGround:0x3B2C3C, hemiI:.7, dir:0xFF9A5E, dirI:1.0, dirPos:[40,30,-120],
+            orb:0xFFB56B, orbPos:[30,84,-380], orbR:24, glow:.9, win:0xFFC066, winO:.85, stars:.3, lantern:1 },
+    night:{ top:0x060A18, bottom:0x24305A, hemiSky:0x3A4C8C, hemiGround:0x0B0D1A, hemiI:.55, dir:0xA6B8FF, dirI:.5, dirPos:[50,110,-60],
+            orb:0xF6F3E0, orbPos:[60,140,-380], orbR:13, glow:.35, win:0xFFD27A, winO:1, stars:1, lantern:1.2 }
+  };
+  function mk(p){
+    return {
+      top:new THREE.Color(p.top), bottom:new THREE.Color(p.bottom), hemiSky:new THREE.Color(p.hemiSky), hemiGround:new THREE.Color(p.hemiGround),
+      dir:new THREE.Color(p.dir), orb:new THREE.Color(p.orb), win:new THREE.Color(p.win),
+      dirPos:new THREE.Vector3(p.dirPos[0], p.dirPos[1], p.dirPos[2]), orbPos:new THREE.Vector3(p.orbPos[0], p.orbPos[1], p.orbPos[2]),
+      hemiI:p.hemiI, dirI:p.dirI, orbR:p.orbR, glow:p.glow, winO:p.winO, stars:p.stars, lantern:p.lantern
+    };
+  }
+  var TG = { day:mk(PH.day), dusk:mk(PH.dusk), night:mk(PH.night) };
+  var cur = mk(PH.night), target = TG.night;
+  var CK = ["top","bottom","hemiSky","hemiGround","dir","orb","win"], VK = ["dirPos","orbPos"], NK = ["hemiI","dirI","orbR","glow","winO","stars","lantern"];
+  function approach(k){
+    CK.forEach(function(n){ cur[n].lerp(target[n], k); });
+    VK.forEach(function(n){ cur[n].lerp(target[n], k); });
+    NK.forEach(function(n){ cur[n] += (target[n] - cur[n]) * k; });
+  }
+
+  /* ---------- scene ---------- */
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x24305A, 100, 470);
+  var camera = new THREE.PerspectiveCamera(50, 1, 1, 1400);
+
+  // sky dome (gradient follows the view direction)
+  var skyMat = new THREE.ShaderMaterial({
+    side:THREE.BackSide, depthWrite:false, fog:false,
+    uniforms:{ top:{value:cur.top}, bottom:{value:cur.bottom} },
+    vertexShader:"varying float h; void main(){ vec4 p = modelMatrix * vec4(position, 1.0); h = normalize(p.xyz - cameraPosition).y; gl_Position = projectionMatrix * viewMatrix * p; }",
+    fragmentShader:"uniform vec3 top; uniform vec3 bottom; varying float h; void main(){ float t = smoothstep(-0.02, 0.5, h); gl_FragColor = vec4(mix(bottom, top, t), 1.0); }"
+  });
+  var sky = new THREE.Mesh(new THREE.SphereGeometry(900, 32, 16), skyMat);
+  sky.renderOrder = -2; sky.frustumCulled = false; scene.add(sky);
+
+  // glow texture
+  function glowTexture(){
+    var c = document.createElement("canvas"); c.width = c.height = 128;
+    var g = c.getContext("2d"), gr = g.createRadialGradient(64,64,0,64,64,64);
+    gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(.25, "rgba(255,255,255,.45)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = gr; g.fillRect(0,0,128,128);
+    return new THREE.CanvasTexture(c);
+  }
+  var glowTex = glowTexture();
+
+  // stars
+  var starGeo = new THREE.BufferGeometry(), sr = mulberry(5), sp = new Float32Array(900*3);
+  for(var i=0;i<900;i++){
+    var u = sr()*Math.PI*2, v = .05 + sr()*.95, rr = Math.sqrt(1 - v*v);
+    sp[i*3] = Math.cos(u)*rr*850; sp[i*3+1] = v*850; sp[i*3+2] = Math.sin(u)*rr*850;
+  }
+  starGeo.setAttribute("position", new THREE.BufferAttribute(sp, 3));
+  var starMat = new THREE.PointsMaterial({ size:2*DPR, sizeAttenuation:false, color:0xFFFFFF, transparent:true, opacity:0, fog:false, depthWrite:false });
+  var stars = new THREE.Points(starGeo, starMat); stars.renderOrder = -1; stars.frustumCulled = false; scene.add(stars);
+
+  // sun / moon
+  var orb = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16), new THREE.MeshBasicMaterial({ color:0xFFFFFF, fog:false }));
+  scene.add(orb);
+  var glow = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowTex, transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, fog:false }));
+  scene.add(glow);
+
+  // lights
+  var hemi = new THREE.HemisphereLight(0xffffff, 0x222233, 1); scene.add(hemi);
+  var dir = new THREE.DirectionalLight(0xffffff, 1); scene.add(dir);
+
+  // terrain
+  var geo = new THREE.PlaneGeometry(700, 640, 200, 180);
+  geo.rotateX(-Math.PI/2); geo.translate(0, 0, -100);
+  var pos = geo.attributes.position, col = new Float32Array(pos.count*3);
+  var cLow = new THREE.Color(0x3A4A3C), cMid = new THREE.Color(0x6A7078), cHigh = new THREE.Color(0x8D939C), cSnow = new THREE.Color(0xF4F7FB), tmp = new THREE.Color();
+  for(var j=0;j<pos.count;j++){
+    var x = pos.getX(j), z = pos.getZ(j), h = heightAt(x, z), n = hash(x*.7, z*.7);
+    pos.setY(j, h);
+    tmp.copy(cLow).lerp(cMid, smooth(0, 30, h)).lerp(cHigh, smooth(30, 70, h)).lerp(cSnow, smooth(62, 82, h + (n - .5)*10));
+    var b = .92 + n*.16;
+    col[j*3] = tmp.r*b; col[j*3+1] = tmp.g*b; col[j*3+2] = tmp.b*b;
+  }
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  geo.computeVertexNormals();
+  scene.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors:true, flatShading:true, roughness:.95, metalness:0 })));
+
+  // town: instanced buildings + lit windows
+  var rnd = mulberry(21), blds = [];
+  for(var gx=-36; gx<=36; gx+=6.5){
+    for(var gz=-46; gz<=14; gz+=6.5){
+      if(rnd() < .18) continue;
+      var bx = gx + (rnd()-.5)*2.5, bz = gz + (rnd()-.5)*2.5;
+      var bw = 2.6 + rnd()*3.2, bd = 2.6 + rnd()*3.2, bh = 3 + Math.pow(rnd(), 2.2)*20;
+      if(Math.abs(bx) < 6 && bz > 0) continue;   // keep the street to the lantern open
+      blds.push({ x:bx, z:bz, w:bw, d:bd, h:bh, y:heightAt(bx, bz) });
+    }
+  }
+  var boxes = new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshStandardMaterial({ roughness:.9, metalness:0 }), blds.length);
+  var dummy = new THREE.Object3D(), bc = new THREE.Color();
+  blds.forEach(function(b, i){
+    dummy.position.set(b.x, b.y - 3 + (b.h + 3)/2, b.z); dummy.rotation.set(0,0,0);
+    dummy.scale.set(b.w, b.h + 3, b.d); dummy.updateMatrix();
+    boxes.setMatrixAt(i, dummy.matrix);
+    bc.setHSL(.6 + rnd()*.05, .22 + rnd()*.12, .22 + rnd()*.1); boxes.setColorAt(i, bc);
+  });
+  scene.add(boxes);
+
+  var wSteady = [], wBlinkA = [], wBlinkB = [];
+  blds.forEach(function(b){
+    for(var f=0; f<4; f++){
+      var ry = f*Math.PI/2, fw = (f%2 === 0) ? b.w : b.d, off = ((f%2 === 0) ? b.d : b.w)/2 + .05;
+      var cols = Math.max(1, Math.floor(fw/1.3)), rows = Math.floor(b.h/2.3);
+      var nx = Math.sin(ry), nz = Math.cos(ry), tx = Math.cos(ry), tz = -Math.sin(ry);
+      for(var c=0;c<cols;c++){
+        for(var r=0;r<rows;r++){
+          if(rnd() > .5) continue;
+          var uu = (c + .5)/cols*fw - fw/2;
+          var w = { x:b.x + nx*off + tx*uu, y:b.y + 1.6 + r*2.3, z:b.z + nz*off + tz*uu, ry:ry };
+          var q = rnd();
+          (q < .06 ? wBlinkA : (q < .12 ? wBlinkB : wSteady)).push(w);
+        }
+      }
+    }
+  });
+  var winGeo = new THREE.PlaneGeometry(.6, .9);
+  function winMaterial(){ return new THREE.MeshBasicMaterial({ color:0xFFD27A, transparent:true, opacity:1, fog:false, polygonOffset:true, polygonOffsetFactor:-2, polygonOffsetUnits:-2 }); }
+  var winMat = winMaterial(), blinkMatA = winMaterial(), blinkMatB = winMaterial();
+  function makeWin(list, mat){
+    if(!list.length) return;
+    var m = new THREE.InstancedMesh(winGeo, mat, list.length), d = new THREE.Object3D();
+    list.forEach(function(w, i){ d.position.set(w.x, w.y, w.z); d.rotation.set(0, w.ry, 0); d.updateMatrix(); m.setMatrixAt(i, d.matrix); });
+    m.instanceMatrix.needsUpdate = true; m.frustumCulled = false; scene.add(m);
+  }
+  makeWin(wSteady, winMat); makeWin(wBlinkA, blinkMatA); makeWin(wBlinkB, blinkMatB);
+
+  // the lantern: the shop's beacon
+  var lantern = new THREE.Group(); lantern.position.set(0, heightAt(0, 10), 10);
+  var pole = new THREE.Mesh(new THREE.CylinderGeometry(.12, .12, 7, 8), new THREE.MeshStandardMaterial({ color:0x1A1A22, roughness:.8 }));
+  pole.position.y = 3.5; lantern.add(pole);
+  var lamp = new THREE.Mesh(new THREE.SphereGeometry(1.3, 20, 14), new THREE.MeshBasicMaterial({ color:0xFF6A4D, fog:false }));
+  lamp.scale.set(1, 1.25, 1); lamp.position.y = 7.8; lantern.add(lamp);
+  var lampGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowTex, color:0xFF8A5C, transparent:true, opacity:.9, blending:THREE.AdditiveBlending, depthWrite:false, fog:false }));
+  lampGlow.scale.set(15, 15, 1); lampGlow.position.y = 7.8; lantern.add(lampGlow);
+  var lampLight = new THREE.PointLight(0xFF9A5E, 1.6, 70); lampLight.position.y = 7.8; lantern.add(lampLight);
+  scene.add(lantern);
+
+  // gold-leaf flakes drifting upward
+  var FN = 140, fr = mulberry(9), fp = new Float32Array(FN*3), fs = new Float32Array(FN);
+  for(var k=0;k<FN;k++){ fp[k*3] = (fr()-.5)*140; fp[k*3+1] = 2 + fr()*48; fp[k*3+2] = -60 + fr()*100; fs[k] = .8 + fr()*1.6; }
+  var flakeGeo = new THREE.BufferGeometry(); flakeGeo.setAttribute("position", new THREE.BufferAttribute(fp, 3));
+  var flakes = new THREE.Points(flakeGeo, new THREE.PointsMaterial({ size:3*DPR, sizeAttenuation:false, color:0xE4BC62, transparent:true, opacity:.8, fog:false, depthWrite:false }));
+  flakes.frustumCulled = false; scene.add(flakes);
+
+  /* ---------- state push ---------- */
+  var time = 0;
+  function applyCur(){
+    scene.fog.color.copy(cur.bottom);
+    hemi.color.copy(cur.hemiSky); hemi.groundColor.copy(cur.hemiGround); hemi.intensity = cur.hemiI;
+    dir.color.copy(cur.dir); dir.intensity = cur.dirI; dir.position.copy(cur.dirPos);
+    orb.position.copy(cur.orbPos); orb.scale.setScalar(cur.orbR); orb.material.color.copy(cur.orb);
+    glow.position.copy(cur.orbPos); glow.scale.setScalar(cur.orbR*8); glow.material.color.copy(cur.orb); glow.material.opacity = cur.glow;
+    winMat.color.copy(cur.win); winMat.opacity = cur.winO;
+    blinkMatA.color.copy(cur.win); blinkMatB.color.copy(cur.win);
+    blinkMatA.opacity = cur.winO * (.55 + .45*Math.sin(time*1.3));
+    blinkMatB.opacity = cur.winO * (.55 + .45*Math.sin(time*2.1 + 2));
+    starMat.opacity = cur.stars * (.8 + .2*Math.sin(time*.9));
+    var pulse = .92 + .08*Math.sin(time*2.4);
+    lampLight.intensity = 1.6 * cur.lantern * pulse;
+    lampGlow.material.opacity = (.55 + .35*cur.lantern) * pulse;
+  }
+
+  /* ---------- camera ---------- */
+  var motion = true, introT = 0, px = 0, py = 0, tpx = 0, tpy = 0;
+  function pose(p){
+    var e = 1 - Math.pow(1 - p, 3), sw = motion ? 1 : 0;
+    var fx = Math.sin(time*.06)*10*sw, fy = 20 + Math.sin(time*.09)*1.2*sw, ftx = Math.sin(time*.05)*6*sw;
+    var x = fx*e, y = 92 + (fy - 92)*e, z = 170 + (56 - 170)*e;
+    var tx = ftx*e, ty = 8 + (15 - 8)*e, tz = -40 + (-25 + 40)*e;
+    var s = motion ? Math.min((window.scrollY || 0)/(window.innerHeight || 800), 1.3) : 0;
+    z -= s*30; y -= s*7; ty -= s*3;
+    x += px*7; y -= py*2; tx += px*4;
+    camera.position.set(x, y, z); camera.lookAt(tx, ty, tz);
+  }
+
+  /* ---------- loop ---------- */
+  var running = false, visible = true, raf = 0, last = 0;
+  function render(){ applyCur(); renderer.render(scene, camera); }
+  function frame(now){
+    if(!running) return;
+    raf = requestAnimationFrame(frame);
+    var dt = Math.min((now - last)/1000 || 0, .05); last = now;
+    time += dt; introT += dt;
+    approach(1 - Math.exp(-dt*1.4));
+    px += (tpx - px)*(1 - Math.exp(-dt*3)); py += (tpy - py)*(1 - Math.exp(-dt*3));
+    var fa = flakeGeo.attributes.position;
+    for(var i=0;i<FN;i++){
+      var y = fa.getY(i) + fs[i]*dt*1.6;
+      if(y > 52) y = 2;
+      fa.setY(i, y);
+      fa.setX(i, fa.getX(i) + Math.sin(time*.6 + i)*dt*.6);
+    }
+    fa.needsUpdate = true;
+    pose(clamp01(introT/4.2));
+    render();
+  }
+  function sync(){
+    var should = motion && visible && !document.hidden;
+    if(should && !running){ running = true; last = performance.now(); raf = requestAnimationFrame(frame); }
+    else if(!should && running){ running = false; cancelAnimationFrame(raf); }
+    if(!motion){ approach(1); px = py = 0; pose(1); render(); }
+  }
+
+  function resize(){
+    var w = hero.clientWidth || window.innerWidth, h = hero.clientHeight || window.innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.fov = camera.aspect < .8 ? 70 : (camera.aspect < 1.2 ? 58 : 50);
+    camera.updateProjectionMatrix();
+    if(!running){ pose(motion ? clamp01(introT/4.2) : 1); render(); }
+  }
+
+  /* ---------- public API ---------- */
+  var firstPhase = true;
+  api.setPhase = function(name){
+    if(!TG[name]) return;
+    target = TG[name];
+    if(firstPhase || !motion){ approach(1); firstPhase = false; if(!running){ render(); } }
+  };
+  api.setMotion = function(on){
+    on = !!on;
+    if(on && !motion){ introT = 4.2; }   // no replay of the intro when re-enabled
+    motion = on;
+    sync();
+  };
+
+  window.addEventListener("resize", resize);
+  window.addEventListener("pointermove", function(e){
+    if(!motion) return;
+    tpx = (e.clientX/window.innerWidth - .5)*2; tpy = (e.clientY/window.innerHeight - .5)*2;
+  }, {passive:true});
+  document.addEventListener("visibilitychange", sync);
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; sync(); }).observe(hero);
+  }
+
+  resize();
+  pose(0); render();
+  canvas.classList.add("ready");
+  sync();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var root = document.documentElement;
+  var ADDRESS = "石川県金沢市片町1丁目7-18 島田ビル 1F";
+  var KEY = "likaman-katamachi-prefs";
+
+  /* ---------- storage (always guarded) ---------- */
+  function load(){ try{ var v = localStorage.getItem(KEY); return v ? JSON.parse(v) : null }catch(e){ return null } }
+  function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){} }
+
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var defaults = { theme:"auto", phase:"auto", motion: reduce ? "off" : "on", size:"m" };
+  var saved = load() || {};
+  var state = {};
+  Object.keys(defaults).forEach(function(k){ state[k] = saved[k] || defaults[k] });
+
+  /* ---------- Japan time ---------- */
+  var HOL = {
+    "2026-01-01":"元日","2026-01-12":"成人の日","2026-02-11":"建国記念の日","2026-02-23":"天皇誕生日","2026-03-20":"春分の日",
+    "2026-04-29":"昭和の日","2026-05-03":"憲法記念日","2026-05-04":"みどりの日","2026-05-05":"こどもの日","2026-05-06":"振替休日",
+    "2026-07-20":"海の日","2026-08-11":"山の日","2026-09-21":"敬老の日","2026-09-22":"国民の休日","2026-09-23":"秋分の日",
+    "2026-10-12":"スポーツの日","2026-11-03":"文化の日","2026-11-23":"勤労感謝の日",
+    "2027-01-01":"元日","2027-01-11":"成人の日","2027-02-11":"建国記念の日","2027-02-23":"天皇誕生日","2027-03-21":"春分の日",
+    "2027-03-22":"振替休日","2027-04-29":"昭和の日","2027-05-03":"憲法記念日","2027-05-04":"みどりの日","2027-05-05":"こどもの日",
+    "2027-07-19":"海の日","2027-08-11":"山の日","2027-09-20":"敬老の日","2027-09-23":"秋分の日","2027-10-11":"スポーツの日",
+    "2027-11-03":"文化の日","2027-11-23":"勤労感謝の日"
+  };
+  var DOW = ["日","月","火","水","木","金","土"];
+  function pad(n){ return n<10 ? "0"+n : ""+n }
+  function keyOf(d){ return d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1)+"-"+pad(d.getUTCDate()) }
+  function nowJST(){ return new Date(Date.now() + 9*3600*1000) }
+
+  function computeStatus(){
+    var t = nowJST();
+    var h = t.getUTCHours(), mi = t.getUTCMinutes();
+    var calDate = new Date(Date.UTC(t.getUTCFullYear(), t.getUTCMonth(), t.getUTCDate()));
+    var bizDate = new Date(calDate.getTime() - (h < 2 ? 86400000 : 0)); // 0:00-2:00 belongs to the previous business day
+    var bdow = bizDate.getUTCDay();
+    var holName = HOL[keyOf(bizDate)] || null;
+    var closeAt = holName ? 24 : 26;
+    var p = h + mi/60 + (h < 2 ? 24 : 0);
+    var isOpen = bdow !== 0 && p >= 17 && p < closeAt;
+    var kind = bdow === 0 ? "sun" : (holName ? "holiday" : "week");
+    var res = { open:isOpen, kind:kind, holName:holName, closeAt:closeAt, p:p, h:h, calDow:calDate.getUTCDay(), calKey:keyOf(calDate) };
+
+    if(isOpen){
+      var remain = closeAt - p, rh = Math.floor(remain), rm = Math.round((remain - rh)*60);
+      if(rm === 60){ rh += 1; rm = 0 }
+      res.main = "営業中";
+      res.sub = (closeAt === 26 ? "2:00" : "24:00") + "閉店 ・ あと" + (rh>0 ? rh+"時間" : "") + (rm>0 ? rm+"分" : (rh===0 ? "0分" : ""));
+    }else{
+      res.main = (res.calDow === 0 && h >= 2) ? "本日は定休日" : "営業時間外";
+      var label = "";
+      for(var i=0;i<8;i++){
+        if(i === 0 && h >= 17) continue;
+        var d = new Date(calDate.getTime() + i*86400000);
+        if(d.getUTCDay() === 0) continue;
+        label = i === 0 ? "本日" : (i === 1 ? "明日" : DOW[d.getUTCDay()] + "曜");
+        break;
+      }
+      res.sub = label + " 17:00に開店";
+    }
+    return res;
+  }
+
+  function renderStatus(){
+    var s = computeStatus();
+    var chip = $("#chip");
+    chip.classList.toggle("open", s.open);
+    $("#chipMain").textContent = s.main;
+    $("#chipSub").textContent = s.sub;
+    var big = $("#liveBig"); big.textContent = s.main; big.classList.toggle("on", s.open);
+    $("#liveSub").textContent = s.sub;
+    $("#navLive").textContent = s.main;
+
+    var note = $("#holNote");
+    if(s.holName && s.kind === "holiday"){
+      note.hidden = false;
+      note.textContent = s.holName + "のため、この日は24:00までの営業です。";
+    }else{ note.hidden = true }
+
+    $$("table.hours tr").forEach(function(tr){ tr.classList.toggle("today", tr.getAttribute("data-kind") === s.kind) });
+
+    var open = $("#tlOpen"), now = $("#tlNow"), cap = $("#tlCap");
+    if(s.kind === "sun"){
+      open.style.width = "0%"; cap.textContent = "日曜は定休日です。";
+    }else{
+      open.style.left = ((17-15)/12*100) + "%";
+      open.style.width = ((s.closeAt-17)/12*100) + "%";
+      cap.textContent = s.kind === "holiday" ? "祝日の営業時間：17:00〜24:00" : "営業時間：17:00〜翌2:00";
+    }
+    if(s.p >= 15 && s.p <= 27){ now.style.display = "block"; now.style.left = ((s.p-15)/12*100) + "%" }
+    else{ now.style.display = "none" }
+
+    var tag = $("#liveTag");
+    tag.hidden = !(s.calKey >= "2026-09-19" && s.calKey <= "2026-09-27");
+  }
+
+  /* ---------- sky phase ---------- */
+  function autoPhase(){
+    var h = nowJST().getUTCHours();
+    if(h >= 6 && h < 16) return "day";
+    if(h >= 16 && h < 19) return "dusk";
+    return "night";
+  }
+  function applyPhase(){
+    var ph = state.phase === "auto" ? autoPhase() : state.phase;
+    root.setAttribute("data-phase", ph);
+    Hero3D.setPhase(ph);
+  }
+
+  /* ---------- apply prefs ---------- */
+  function applyAll(){
+    if(state.theme === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", state.theme);
+    root.setAttribute("data-motion", state.motion);
+    root.setAttribute("data-size", state.size);
+    applyPhase();
+    ["theme","phase","motion","size"].forEach(function(name){
+      $$('input[name="'+name+'"]').forEach(function(r){ r.checked = (r.value === state[name]) });
+    });
+    Hero3D.setMotion(state.motion === "on");
+  }
+  $$(".seg input").forEach(function(r){
+    r.addEventListener("change", function(){
+      state[r.name] = r.value; save(state); applyAll();
+    });
+  });
+  $("#reset").addEventListener("click", function(){
+    state = JSON.parse(JSON.stringify(defaults)); save(state); applyAll(); toast("設定をもとに戻しました");
+  });
+
+  /* ---------- header ---------- */
+  var bar = $("#bar"), ticking = false;
+  function onScroll(){
+    bar.classList.toggle("scrolled", (window.scrollY || 0) > 24);
+    ticking = false;
+  }
+  window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(onScroll) } }, {passive:true});
+
+  /* ---------- drawer ---------- */
+  var burger = $("#burger"), panel = $("#panel"), veil = $("#veil"), lastFocus = null;
+  function openPanel(){
+    lastFocus = document.activeElement;
+    panel.removeAttribute("inert"); panel.classList.add("open"); veil.classList.add("show");
+    burger.setAttribute("aria-expanded","true"); document.body.style.overflow = "hidden";
+    setTimeout(function(){ $("#closePanel").focus() }, 60);
+  }
+  function closePanel(restore){
+    panel.classList.remove("open"); veil.classList.remove("show");
+    burger.setAttribute("aria-expanded","false"); document.body.style.overflow = "";
+    panel.setAttribute("inert","");
+    if(restore !== false && lastFocus) lastFocus.focus();
+  }
+  burger.addEventListener("click", function(){ panel.classList.contains("open") ? closePanel() : openPanel() });
+  $("#closePanel").addEventListener("click", function(){ closePanel() });
+  veil.addEventListener("click", function(){ closePanel() });
+  $$("#panel nav a").forEach(function(a){ a.addEventListener("click", function(){ closePanel(false) }) });
+  document.addEventListener("keydown", function(e){
+    if(!panel.classList.contains("open")) return;
+    if(e.key === "Escape"){ closePanel(); return }
+    if(e.key === "Tab"){
+      var f = $$('button, a[href], input, [tabindex]:not([tabindex="-1"])', panel).filter(function(el){ return !el.disabled && el.offsetParent !== null });
+      if(!f.length) return;
+      var first = f[0], last = f[f.length-1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus() }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus() }
+    }
+  });
+
+  /* ---------- map + copy ---------- */
+  var mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("リカーマウンテン 金沢片町1丁目店 " + ADDRESS);
+  $("#mapLink").href = mapUrl; $("#mapLink2").href = mapUrl;
+  var toastTimer;
+  function toast(msg){
+    var t = $("#toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.classList.remove("show") }, 2200);
+  }
+  function copyAddress(){
+    var text = "〒920-0981 " + ADDRESS;
+    function fallback(){
+      var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try{ ok = document.execCommand("copy") }catch(e){}
+      document.body.removeChild(ta);
+      toast(ok ? "住所をコピーしました" : "コピーできませんでした。住所を長押しでコピーしてください");
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast("住所をコピーしました") }, fallback);
+    }else fallback();
+  }
+  $("#copyAddr").addEventListener("click", copyAddress);
+  $("#copyAddr2").addEventListener("click", copyAddress);
+
+  /* ---------- init ---------- */
+  applyAll(); renderStatus(); onScroll();
+  setInterval(function(){ renderStatus(); if(state.phase === "auto") applyPhase() }, 30000);
+})();
+</script>
+</body>
+</html>
