@@ -1,0 +1,561 @@
+/* ==========================================================
+   平泉寺白山神社 style.css
+   目次
+   1. 変数・リセット
+   2. ヘッダー
+   3. ヒーロー(スライドショー)
+   4. SNS帯
+   5. 共通パーツ(見出し・ボタン)
+   6. ご参拝(特集ブロック)
+   7. 授与品
+   8. お知らせ
+   9. 由緒
+   10. アクセス
+   11. フッター
+   12. スクロールフェード
+   ========================================================== */
+
+
+/* ---------- 1. 変数・リセット ---------- */
+:root {
+  /* 色 */
+  --bg:   #f4f1e8;  /* 背景 */
+  --fg:   #1d2a22;  /* 文字 */
+  --mute: #6b7469;  /* 薄い文字 */
+  --moss: #2f4a37;  /* 苔色 */
+  --deep: #14221a;  /* 深緑 */
+  --gold: #b08d4a;  /* 金 */
+  --card: #fffdf7;  /* カード背景 */
+  --line: #d9d3c2;  /* 罫線 */
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ダークモード */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:   #111a14;
+    --fg:   #ece8dc;
+    --mute: #9aa397;
+    --card: #18241c;
+    --line: #2b3a30;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:   #111a14;
+  --fg:   #ece8dc;
+  --mute: #9aa397;
+  --card: #18241c;
+  --line: #2b3a30;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 15px/1.9 "Zen Kaku Gothic New", system-ui, sans-serif;
+  letter-spacing: .04em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.serif {
+  font-family: "Shippori Mincho", "Yu Mincho", serif;
+}
+
+
+/* ---------- 2. ヘッダー ---------- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 5vw 14px;
+  color: #fff;
+  background: linear-gradient(#0c1610cc, transparent);
+}
+
+.logo {
+  font-family: "Shippori Mincho", serif;
+  font-size: 18px;
+  letter-spacing: .2em;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+}
+nav a:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 760px) {
+  nav { display: none; }  /* スマホではメニューを隠す */
+}
+
+
+/* ---------- 3. ヒーロー(スライドショー) ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  /* 画像が読み込めない時の予備背景 */
+  background:
+    radial-gradient(ellipse at 50% 120%, #5d8a5a 0, transparent 60%),
+    radial-gradient(ellipse at 20% 30%, #2f4a37 0, transparent 55%),
+    linear-gradient(#0d1a12, #1b3023 60%, #26402d);
+}
+
+/* 画像スライド */
+.slides {
+  position: absolute;
+  inset: 0;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.6s ease, transform 7s ease-out;
+}
+.slide.on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 文字を読みやすくする暗いグラデーション */
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(#0a140ea0, #0a140e40 45%, #0a140eb0);
+}
+.hero > div:not(.slides) {
+  position: relative;
+  z-index: 2;
+}
+
+/* タイトル */
+.hero h1 {
+  position: relative;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 600;
+  font-size: clamp(34px, 7vw, 76px);
+  letter-spacing: .3em;
+  text-indent: .3em;
+}
+.hero p {
+  position: relative;
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: .35em;
+  opacity: .85;
+}
+
+/* スライド切り替えバー(右下) */
+.dots {
+  position: absolute;
+  right: 5vw;
+  bottom: 30px;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+.dots button {
+  width: 28px;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  background: #ffffff66;
+  cursor: pointer;
+}
+.dots button.on {
+  background: #fff;
+}
+
+/* SCROLL 表示 */
+.scroll {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: .3em;
+  writing-mode: vertical-rl;
+  opacity: .8;
+}
+.scroll:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 48px;
+  margin: 10px auto 0;
+  background: #fff;
+}
+
+/* 動きを減らす設定の人向け */
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition: opacity .01s; }
+}
+
+
+/* ---------- 4. SNS帯 ---------- */
+.sns {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  padding: 28px 5vw;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--mute);
+}
+
+
+/* ---------- 5. 共通パーツ(見出し・ボタン) ---------- */
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 96px 5vw;
+}
+
+h2 {
+  margin-bottom: 12px;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: .3em;
+  text-align: center;
+}
+
+/* 見出し下の英字ラベル */
+.sub {
+  margin-bottom: 52px;
+  font-size: 11px;
+  letter-spacing: .4em;
+  text-align: center;
+  color: var(--gold);
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 34px;
+  border: 1px solid var(--fg);
+  font-size: 13px;
+  letter-spacing: .25em;
+  transition: .25s;
+}
+.btn:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: #fff;
+}
+
+.more {
+  margin-top: 44px;
+  text-align: center;
+}
+
+.note {
+  margin-top: 28px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--mute);
+}
+
+
+/* ---------- 6. ご参拝(特集ブロック) ---------- */
+.feature {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;  /* 左:画像 右:文章 */
+  gap: 0;
+  max-width: none;
+  padding: 0;
+  background: var(--card);
+}
+.feature .img {
+  min-height: 460px;
+  background:
+    radial-gradient(circle at 30% 70%, #6f9b66, transparent 55%),
+    linear-gradient(135deg, #1f3626, #47694a);
+}
+.feature .tx {
+  align-self: center;
+  padding: 72px 6vw;
+}
+.feature h3 {
+  margin-bottom: 18px;
+  font-family: "Shippori Mincho", serif;
+  font-size: 22px;
+  letter-spacing: .3em;
+}
+.feature ul {
+  margin: 16px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+.feature li:before {
+  content: "◆ ";
+  font-size: 10px;
+  color: var(--gold);
+}
+
+@media (max-width: 760px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature .img { min-height: 260px; }
+}
+
+
+/* ---------- 7. 授与品 ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+}
+.item .ph {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  font-family: "Shippori Mincho", serif;
+  font-size: 34px;
+  color: #fff;
+  transition: .3s;
+}
+.item:hover .ph {
+  transform: scale(1.02);
+}
+.item h4 {
+  margin: 12px 0 2px;
+  font-weight: 500;
+  font-size: 14px;
+}
+.item .pr {
+  font-size: 13px;
+  color: var(--mute);
+}
+
+
+/* ---------- 8. お知らせ ---------- */
+.news {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+.news .th {
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, #34523b, #8aa27a);
+}
+.news time {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--mute);
+}
+.news h4 {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.news a:hover h4 {
+  color: var(--gold);
+}
+
+
+/* ---------- 9. 由緒 ---------- */
+.profile {
+  max-width: none;
+  color: #fff;
+  background:
+    linear-gradient(#0f1c14e6, #14221aee),
+    radial-gradient(circle at 70% 30%, #527a52, #14221a);
+}
+.profile .in {
+  max-width: 900px;
+  margin: auto;
+}
+.profile h2 {
+  color: #fff;
+}
+.profile h3 {
+  margin: 40px 0 14px;
+  font-family: "Shippori Mincho", serif;
+  font-size: 20px;
+  letter-spacing: .3em;
+  color: var(--gold);
+}
+
+/* 年表 */
+.tl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px 18px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff30;
+}
+.tl b {
+  font-family: "Shippori Mincho", serif;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+
+/* ---------- 10. アクセス ---------- */
+.access {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 左:情報 右:地図 */
+  gap: 48px;
+}
+.access dl {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  border-top: 1px solid var(--line);
+}
+.access dt,
+.access dd {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.access dt {
+  font-size: 13px;
+  color: var(--mute);
+}
+
+/* 地図の仮置き枠(Googleマップ埋め込み時は置き換え) */
+.map {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  font-size: 13px;
+  color: var(--mute);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--card) 0 14px,
+    var(--line) 14px 15px
+  );
+}
+
+@media (max-width: 760px) {
+  .access { grid-template-columns: 1fr; }
+}
+
+
+/* ---------- 11. フッター ---------- */
+footer {
+  padding: 60px 5vw calc(40px + env(safe-area-inset-bottom, 0px));
+  background: var(--deep);
+  color: #cfd6c8;
+  font-size: 12px;
+  text-align: center;
+}
+footer .logo {
+  display: block;
+  margin-bottom: 20px;
+  color: #fff;
+}
+footer .sns {
+  padding: 0 0 24px;
+  border: 0;
+  color: #9fb09a;
+}
+
+@media(max-width:760px){nav{display:none}}
+.hero{height:100vh;min-height:560px;position:relative;display:grid;place-items:center;color:#fff;text-align:center;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,#5d8a5a 0,transparent 60%),radial-gradient(ellipse at 20% 30%,#2f4a37 0,transparent 55%),linear-gradient(#0d1a12,#1b3023 60%,#26402d)}
+.slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.06);transition:opacity 1.6s ease,transform 7s ease-out}
+.slide.on{opacity:1;transform:scale(1)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(#0a140ea0,#0a140e40 45%,#0a140eb0)}
+.hero>div:not(.slides){position:relative;z-index:2}
+.dots{position:absolute;bottom:30px;right:5vw;z-index:3;display:flex;gap:10px}
+.dots button{width:28px;height:2px;border:0;padding:0;background:#ffffff66;cursor:pointer}
+.dots button.on{background:#fff}
+@media (prefers-reduced-motion:reduce){.slide{transition:opacity .01s}}
+.hero h1{font-family:"Shippori Mincho",serif;font-weight:600;font-size:clamp(34px,7vw,76px);letter-spacing:.3em;text-indent:.3em;position:relative}
+.hero p{position:relative;margin-top:14px;letter-spacing:.35em;font-size:13px;opacity:.85}
+.scroll{position:absolute;bottom:26px;left:50%;font-size:11px;letter-spacing:.3em;writing-mode:vertical-rl;transform:translateX(-50%);opacity:.8}
+.scroll:after{content:"";display:block;width:1px;height:48px;background:#fff;margin:10px auto 0}
+.sns{display:flex;justify-content:center;gap:34px;padding:28px 5vw;border-bottom:1px solid var(--line);font-size:13px;color:var(--mute)}
+section{padding:96px 5vw;max-width:1200px;margin:auto}
+h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:26px;letter-spacing:.3em;text-align:center;margin-bottom:12px}
+.sub{text-align:center;color:var(--gold);font-size:11px;letter-spacing:.4em;margin-bottom:52px}
+.feature{display:grid;grid-template-columns:1.1fr 1fr;gap:0;max-width:none;padding:0;background:var(--card)}
+.feature .img{min-height:460px;background:radial-gradient(circle at 30% 70%,#6f9b66,transparent 55%),linear-gradient(135deg,#1f3626,#47694a)}
+.feature .tx{padding:72px 6vw;align-self:center}
+.feature h3{font-family:"Shippori Mincho",serif;letter-spacing:.3em;font-size:22px;margin-bottom:18px}
+.feature ul{list-style:none;padding:0;margin:16px 0 28px}
+.feature li:before{content:"◆ ";color:var(--gold);font-size:10px}
+.btn{display:inline-block;border:1px solid var(--fg);padding:11px 34px;font-size:13px;letter-spacing:.25em;transition:.25s}
+.btn:hover{background:var(--moss);color:#fff;border-color:var(--moss)}
+@media(max-width:760px){.feature{grid-template-columns:1fr}.feature .img{min-height:260px}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px}
+.item .ph{aspect-ratio:1;display:grid;place-items:center;font-family:"Shippori Mincho",serif;font-size:34px;color:#fff;transition:.3s}
+.item:hover .ph{transform:scale(1.02)}
+.item h4{font-weight:500;font-size:14px;margin:12px 0 2px}
+.item .pr{color:var(--mute);font-size:13px}
+.more{text-align:center;margin-top:44px}
+.news{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.news .th{aspect-ratio:3/2;background:linear-gradient(135deg,#34523b,#8aa27a)}
+.news time{display:block;font-size:12px;color:var(--mute);margin-top:12px}
+.news a:hover h4{color:var(--gold)}
+.news h4{font-weight:500;font-size:15px;line-height:1.7}
+.profile{max-width:none;color:#fff;background:linear-gradient(#0f1c14e6,#14221aee),radial-gradient(circle at 70% 30%,#527a52,#14221a)}
+.profile .in{max-width:900px;margin:auto}
+.profile h2{color:#fff}
+.profile h3{font-family:"Shippori Mincho",serif;font-size:20px;letter-spacing:.3em;margin:40px 0 14px;color:var(--gold)}
+.tl{display:grid;grid-template-columns:110px 1fr;gap:10px 18px;border-top:1px solid #ffffff30;padding-top:20px}
+.tl b{font-family:"Shippori Mincho",serif;color:var(--gold);font-weight:600}
+.access{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.access dl{display:grid;grid-template-columns:90px 1fr;border-top:1px solid var(--line)}
+.access dt,.access dd{padding:14px 0;border-bottom:1px solid var(--line)}
+.access dt{color:var(--mute);font-size:13px}
+.map{min-height:300px;background:repeating-linear-gradient(45deg,var(--card) 0 14px,var(--line) 14px 15px);display:grid;place-items:center;color:var(--mute);font-size:13px}
+@media(max-width:760px){.access{grid-template-columns:1fr}}
+footer{background:var(--deep);color:#cfd6c8;text-align:center;padding:60px 5vw calc(40px + env(safe-area-inset-bottom,0px));font-size:12px}
+footer .logo{color:#fff;display:block;margin-bottom:20px}
+footer .sns{border:0;color:#9fb09a;padding:0 0 24px}
+.note{font-size:11px;color:var(--mute);text-align:center;margin-top:28px}
+
+/* ---------- 12. スクロールフェード ---------- */
+.js-fade .fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.js-fade .fade.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 動きを減らす設定の人には、すぐ表示 */
+@media (prefers-reduced-motion: reduce) {
+  .js-fade .fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
